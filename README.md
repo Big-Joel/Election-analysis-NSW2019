@@ -23,6 +23,7 @@ From the 7 source Excel files, this model was created: [model screenshot](https:
 ## Formulae
 I used DAX to create measures and calculated columns. An example being this one, to determine if each electorate is a swinging seat or not:
 
+```
 Swinging Seat = 
     var districtId = [electorate_id]
     var candidateId = FILTER(Candidates, [electorate_id] = districtId && [Elected] = True)
@@ -30,3 +31,4 @@ return
     CALCULATE(
         if([Votes % of 2CP by electorate]<0.55, True, False),
         candidateId)
+```
